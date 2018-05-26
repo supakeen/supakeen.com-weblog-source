@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'supakeen'
-SITENAME = u"supakeen's weblog"
+SITENAME = u"supakeen"
 SITEURL = ''
 
 PATH = 'content'
@@ -32,4 +32,6 @@ SOCIAL = (('You can add links in your config file', '#'),
 DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+#RELATIVE_URLS = True
+
+THEME = "../supakeen.github.io-weblog-theme"
