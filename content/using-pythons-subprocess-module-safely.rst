@@ -23,12 +23,13 @@ Command Injection
 -----------------
 To start out you need to understand why executing commands from Python can be
 dangerous. This principle applies to all languages and is called
-**Command Injection**, there's some examples on the OWASP_ pages and the CWE-77_
-page and I will provide my own here.
+**Command Injection**, there are  some examples on the OWASP_ pages and the CWE-77_
+page. I will provide my own here.
 
-Here is some code that will restart a service on your system by name of one of
-arguments it receives. Let's name our program `service.py` and make it a way
-in Python to execute commands called os.system_.
+Here is some code that will restart a service on your system by the name of
+the argument it receives. I name this program `service.py` and its goal is
+to restart services. To do that it uses a function to execute commands called 
+os.system_.
 
 .. code-block:: python
 
@@ -37,7 +38,7 @@ in Python to execute commands called os.system_.
 
    os.system("systemctl restart {}".format(sys.argv[1]))
 
-If we call our program as `python service.py nginx` the string that gets put
+If we call our program with `python service.py nginx` the string that gets put
 into our `os.system`-call will be the string `systemctl restart nginx` and all
 is good in the world. However, if someone calls our program as 
 `python service.py 'nginx;cat /etc/passwd'` our executed command will become:
@@ -55,8 +56,8 @@ Any place where input is passed into a command to be executed one needs to be
 especially careful. This can be in scripts such as the example above or websites,
 network protocols, and others. Sometimes input can be things you wouldn't
 expect to be input and is a reason why I won't call it *user input* in this
-article. It can be for example a HTTP request made by your application that is
-changed by a man in the middle attack on an unsafe network and puts the client
+article. It can be, for example, an HTTP request made by your application that is
+changed by a man in the middle attack on an unsafe network, which can put the client
 at risk.
 
 How does a command get executed?
@@ -65,9 +66,9 @@ Before I can talk about how to prevent these types of attacks it is important
 to dive a tiny bit deeper. How does a command get executed by your operating
 system?
 
-In general your operating systems library will use a set of functions called
-`exec*` functions where the `*` can be filled with a variety of letters. They are
-documented in the man-pages_.
+In general your operating system's library will use a set of functions called
+`exec*` functions where the `*` can be filled with a variety of letters. They
+are documented in the man-pages_.
 
 These seem a bit daunting but in general all these functions follow the same
 pattern. They all take a `path` or `file` to execute, if the function takes a
@@ -98,9 +99,9 @@ you to do things without calling commands. Someone can chain everything they wan
 in there by gaining control of a parameter that gets fed to a shell and shells get
 involved in places where you sometimes don't know they will be.
 
-Can we make arguments passed to shells safe? No, not really. You always want to
-use a method which preferably circumvents opening a shell at all or you run the
-risk of missing one of the many ways in which shells can be operated.
+Can we make arguments passed to shells safe? No, not really. You want to
+use a function which does not use a shell at all to prevent shell-based
+exploits.
 
 Ways to execute commands in Python
 ----------------------------------
@@ -108,9 +109,8 @@ Python 3 offers a variety of ways for executing commands but there is one which
 springs out and that is the subprocess_-module.
 
 The subprocess_-module allows us to execute commands without opening a shell to
-parse our string into the appropriate parts but to instead let it do that
-ourselves. This puts us at much lower risk of accidentally letting something get
-executed which we don't want.
+parse our string into the appropriate parts. This puts us at minimal risk for
+being exploited.
 
 **Note: Of course the program you are executing through subprocess can still have
 its own flaws that allow it to be subverted to do things you don't want.**
@@ -176,9 +176,9 @@ File redirection (`>`, and others) can be done in the same way by storing the
 output and then writing it to a file in Python.
 
 For most command line utilities you would normally use with these operators you
-can either trivially implement them in Python or find a library on PyPI_ to give
-you the output directly instead of trying to parse `ip`, `ifconfig`, or others
-in a shell instead of in Python.
+can either trivially implement them in Python. You can also try to find a library
+on PyPI_ to give you the output directly instead of trying to parse `ip`, `ifconfig`,
+or others in a shell.
 
 What if I really really need a shell?
 -------------------------------------
