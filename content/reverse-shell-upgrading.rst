@@ -110,7 +110,7 @@ any data. However, if we look over at our terminal with `nc` in it:
     Connection from localhost 44040 received!
     $
 
-Our command injection has worked and is now connected to our netcat. However
+Our command injection has worked and is now connected to our netcat. But  
 this shell has a few issues! When we run a program and try to `ctrl+c` it our
 netcat program exits. And trying to run `su` yields another error:
 
@@ -125,7 +125,7 @@ netcat program exits. And trying to run `su` yields another error:
 
 The reason of why is not relevant in this article but the gist is that your
 command injection was not allocated a `pty`. We can work around that by
-first gaining a tty using python.
+first gaining a pty using python.
 
 .. code-block:: plain
 
