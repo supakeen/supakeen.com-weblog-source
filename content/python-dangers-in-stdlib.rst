@@ -9,19 +9,19 @@ Python dangers in the standard library
 :summary: Things to be wary of when using Python's standard library.
 
 The Python programming language comes with "Batteries Included". A philosophy
-to have a large and immediately useful standard library. However, since the
+to ship a comprehensive, immediately-useful standard library. However, since the
 standard library comes with Python it is hard to refactor for older code
-depends on it. Because of this the standard library can in many cases be quite
+depends on it. Because of this the standard library can in many cases lag quite
 far behind what is available in the ecosystem as a whole.
 
 Some of the Python standard library is downright dangerous. By dangerous I mean
 that special care has to be taken when using certain functions. This article
-highlights some of the more well known issues with the standard library but is
-by no means a comprehensive list of everything that can go wrong nor a claim
+highlights some of the more well-known issues with the standard library, but is
+by no means a comprehensive list of everything that can go wrong, nor a claim
 that the Python standard library is bad.
 
-This article is only about modules in the standard library, dangerous syntax,
-types, and other language abilities are saved for another day. As always pay
+This article is only about modules in the standard library; dangerous syntax,
+types, and other language abilities are saved for another day. As always, pay
 attention and try to think 'what does this actually do and can it be used in
 a different way'.
 
@@ -36,12 +36,13 @@ often used when someone needs an easy way to send an objects' state elsewhere.
 The Pickle module has many pitfalls. One of them is the fact that Pickled data
 is meant to run on only the same Python version, and while it might sometimes 
 work on different versions (Pickle has a notion of a protocol version) its
-interoperability leaves some things to be desired
+interoperability leaves some things to be desired.
 
 More damning is the fact that loading Pickled data allows for arbitrary code 
-execution. If you load Pickled data from sources you cannot trust, and really
-can you ever, it is woeful. This combined with the fact that a serialization
-format has interoperability issues should be enough to steer well clear of it.
+execution. If you load Pickled data from sources you cannot trust -- something
+much harder to guarantee than it might seem -- it is woeful. This combined
+with the fact that a serialization format has interoperability issues should be
+enough to steer well clear of it.
 
 See the following example of unpickling some data, causing it to print
 ``hello``.
@@ -54,8 +55,8 @@ See the following example of unpickling some data, causing it to print
 
         # hello
 
-If you do ever need to exchange data use a format that does not allow for any
-smart things. A good option is to use JSON, which is available in the standard
+If you do ever need to exchange data, use a format that does not allow for any
+'clever' things. A good option is to use JSON, which is available in the standard
 library. You would need to write some code to explicitly convert your objects
 to a format you are happy with, and some code to explicitly convert some
 serialized data back to your objects.
@@ -88,12 +89,12 @@ commonly used improperly. Consider if the following is the splitting you want:
     # b'foo\nhello\n'
 
 The above shows a mismatch between what shlex thinks are separators for a shell
-and what the actual outcome is. Someone slightly familiar with shlex might
+and what the actual outcome is. Someone less familiar with shlex might
 assume that a shlex split always makes sure only a single argument is possible.
 
 shlex can give a false sense of security if you are not absolutely certain you
 know how shells work and what is in your input. Since you can never be certain
-of the latter you should prefer to work around having to use it.
+of the latter, you should prefer to work around having to use it.
 
 re
 --
@@ -136,7 +137,7 @@ generator. If you use it for anything that is supposed to be secret please
 use ``random.SecureRandom()``.
 
 It is a good idea to always use SecureRandom unless you are certain you don't
-need it instead of assuming the reverse.
+need it, instead of assuming the reverse.
 
 
 .. _Pickle: https://docs.python.org/3/library/pickle.html#module-pickle
