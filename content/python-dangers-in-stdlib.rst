@@ -1,9 +1,9 @@
-Python dangers in the standard library
-######################################
+Dangers in Python's standard library
+####################################
 
 :date: 2019-01-16 12:00
-:tags: python
-:category: python, stdlib
+:tags: python, stdlib
+:category: python
 :slug: 0x03
 :authors: supakeen
 :summary: Things to be wary of when using Python's standard library.
@@ -40,7 +40,7 @@ interoperability leaves some things to be desired
 
 More damning is the fact that loading Pickled data allows for arbitrary code 
 execution. If you load Pickled data from sources you cannot trust, and really
-can you ever, it is woeful. This combined with the fact that a serialization
+can you ever? It is woeful. This combined with the fact that a serialization
 format has interoperability issues should be enough to steer well clear of it.
 
 See the following example of unpickling some data, causing it to print
@@ -69,7 +69,7 @@ function you want to ever use due to its working. You would want to use the
 ``subprocess.*`` functions and those come with a manual_ to use securely.
 
 Seriously scrutinize any use of these classes of functions as they lead to
-some of the easiest to turn against you mistakes.
+mistakes, most of which are easy to turn against you.
 
 shlex
 -----
