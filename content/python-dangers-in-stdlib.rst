@@ -134,7 +134,7 @@ random
 ------
 The default random_ module in Python will use a predictable random number
 generator. If you use it for anything that is supposed to be secret please
-use ``random.SecureRandom()``.
+use the ``secrets`` module or ``random.SystemRandom()``.
 
 It is a good idea to always use SecureRandom unless you are certain you don't
 need it, instead of assuming the reverse.
