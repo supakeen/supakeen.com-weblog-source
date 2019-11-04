@@ -134,10 +134,10 @@ random
 ------
 The default random_ module in Python will use a predictable random number
 generator. If you use it for anything that is supposed to be secret please
-use the ``secrets`` module or ``random.SystemRandom()``.
+use the secrets_ module or ``random.SystemRandom()``.
 
-It is a good idea to always use SecureRandom unless you are certain you don't
-need it, instead of assuming the reverse.
+It is a good idea to always use ``secrets`` or ``SystemRandom`` unless you are
+certain you don't need it, instead of assuming the reverse.
 
 
 .. _Pickle: https://docs.python.org/3/library/pickle.html#module-pickle
@@ -147,3 +147,5 @@ need it, instead of assuming the reverse.
 .. _xml: https://docs.python.org/3/library/xml.html#module-xml
 .. _defusedxml: https://pypi.org/project/defusedxml/
 .. _lxml: https://lxml.de/
+.. _random: https://docs.python.org/3/library/random.html
+.. _secrets: https://docs.python.org/3/library/secrets.html
