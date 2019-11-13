@@ -9,8 +9,8 @@ Dangers in Python's standard library
 :summary: Things to be wary of when using Python's standard library.
 
 The Python programming language comes with "Batteries Included". A philosophy
-to ship a comprehensive, immediately-useful standard library. However, since the
-standard library comes with Python it is hard to refactor for older code
+to ship a comprehensive, immediately-useful standard library. However, since
+the standard library comes with Python it is hard to refactor for older code
 depends on it. Because of this the standard library can in many cases lag quite
 far behind what is available in the ecosystem as a whole.
 
@@ -34,11 +34,11 @@ Pickle_ is a module in Python land to serialize 'arbitrary' objects. It is
 often used when someone needs an easy way to send an objects' state elsewhere.
 
 The Pickle module has many pitfalls. One of them is the fact that Pickled data
-is meant to run on only the same Python version, and while it might sometimes 
+is meant to run on only the same Python version, and while it might sometimes
 work on different versions (Pickle has a notion of a protocol version) its
 interoperability leaves some things to be desired.
 
-More damning is the fact that loading Pickled data allows for arbitrary code 
+More damning is the fact that loading Pickled data allows for arbitrary code
 execution. If you load Pickled data from sources you cannot trust -- something
 much harder to guarantee than it might seem -- it is woeful. This combined
 with the fact that a serialization format has interoperability issues should be
