@@ -4,7 +4,7 @@ The plans for 2020
 :date: 2020-01-12 12:00
 :tags: life
 :category: life
-:slug: 0x04
+:slug: stuff-for-2020
 :authors: supakeen
 :summary: Stuff I'll be working on in 2020.
 

@@ -4,7 +4,7 @@ Executing commands safely from Python
 :date: 2018-05-25 12:00
 :tags: python, subprocess
 :category: python
-:slug: 0x01
+:slug: executing-commands-safely-from-python
 :authors: supakeen
 :summary: A introduction on how to use Python to execute subcommands safely.
 

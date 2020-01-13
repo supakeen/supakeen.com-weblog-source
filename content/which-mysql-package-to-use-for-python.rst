@@ -4,7 +4,7 @@ Which mysql package to use for Python
 :date: 2020-01-11 12:00
 :tags: python
 :category: python
-:slug: 0x05
+:slug: which-mysql-package-to-use-for-python
 :authors: supakeen
 :summary: Which mysql package to use for Python.
 

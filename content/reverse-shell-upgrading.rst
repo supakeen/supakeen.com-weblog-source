@@ -4,7 +4,7 @@ Upgrading a reverse shell?
 :date: 2018-09-08 12:00
 :tags: shell, tty
 :category: hack
-:slug: 0x02
+:slug: upgrading-a-reverse-shell
 :authors: supakeen
 :summary: Some notes on gaining and upgrading reverse shells.
 

@@ -4,7 +4,7 @@ Dangers in Python's standard library
 :date: 2019-01-16 12:00
 :tags: python, stdlib
 :category: python
-:slug: 0x03
+:slug: dangers-in-pythons-standard-library
 :authors: supakeen
 :summary: Things to be wary of when using Python's standard library.
 
