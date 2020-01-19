@@ -1,7 +1,7 @@
 The plans for 2020
 ##################
 
-:date: 2020-01-12 12:00
+:date: 2020-01-01 12:00
 :tags: life
 :category: life
 :slug: stuff-for-2020
