@@ -116,3 +116,4 @@ dmypy.json
 
 doc/_build
 .vscode
+output/
