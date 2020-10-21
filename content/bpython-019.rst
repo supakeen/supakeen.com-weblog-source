@@ -2,7 +2,7 @@ Release of bpython 0.19
 #######################
 
 :date: 2020-03-27 12:00
-:tags: python, pinnwand
+:tags: python, bpython
 :category: python
 :slug: bpython-019
 :authors: supakeen
