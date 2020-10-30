@@ -1,4 +1,4 @@
-Nim Package of the Week: npeg
+Nim Package of the Week: nimpy
 ##############################
 
 :date: 2020-10-26 12:00
